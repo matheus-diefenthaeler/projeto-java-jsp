@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Slf4j
 @RequestMapping("/cadastrodespesa")
-public class CadastroDespesa {
+public class CadastroDespesaController {
 
     @Autowired
     private DespesaService despesaService;
