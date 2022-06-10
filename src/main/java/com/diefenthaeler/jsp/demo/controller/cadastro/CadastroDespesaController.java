@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @Slf4j
@@ -24,12 +27,13 @@ public class CadastroDespesaController {
 
 
     @PostMapping
-    public String salvar(Despesa despesa){
+    public ModelAndView salvar(@Valid Despesa despesa){
         // falta gravar no banco
         log.info("Objeto de despesa antes de persistir{}", despesa);
         Despesa despesaEntity = despesaService.salvar(despesa);
         log.info("Objeto de despesa apos de persistir{}", despesaEntity);
-        return "/cadastro/cadastro-de-despesa";
+        ModelAndView modelAndView = new ModelAndView("/cadastro/cadastro-de-despesa");
+        modelAndView.addObject("mensagem", "Despesa salva com sucesso");
+        return modelAndView;
     }
-
 }
